@@ -7,7 +7,7 @@ import ReactionModal from '../FeedSideBar/ReactionModal';
 import ProfileModal from '../FeedSideBar/ProfileModal';
 
 export const RecognitionCard = memo(
-	({ recognition, sent, profileBadges, inModal, profileData }) => {
+	({ recognition, sent, profileBadges, inModal }) => {
 		const time = useMemo(() => timeAgo(recognition.date), [recognition]);
 
 		const {
@@ -88,7 +88,11 @@ export const RecognitionCard = memo(
 				)}
 				<a onClick={e => (inModal ? null : handleProfileClick(e))}>
 					<img
-						src={recognition.profile_pic}
+						src={
+							sent
+								? 'https://kansha-bucket.s3-us-west-1.amazonaws.com/avatar.png'
+								: recognition.profile_pic
+						}
 						alt="user avatar"
 						width="35px"
 						style={{ cursor: 'pointer' }}
@@ -120,18 +124,12 @@ export const RecognitionCard = memo(
 								// 	)}
 								<p
 									style={{
-										color: '#0f0f33',
-										fontSize: '1.4rem',
+										color: '#c91757',
+										fontSize: '1.6rem',
 									}}>
 									From {''}
-									<span
-										style={{
-											color: '#c91757',
-											fontSize: '1.4rem',
-										}}>
-										{recognition.first_name}{' '}
-										{recognition.last_name}
-									</span>
+									{recognition.first_name}{' '}
+									{recognition.last_name}
 								</p>
 							)}
 							<span className="time" role="presentation">
