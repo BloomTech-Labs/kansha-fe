@@ -46,8 +46,6 @@ export const RecognitionCard = memo(
 		const [select, setSelect] = useState(false);
 		const [profileSelect, setProfileSelect] = useState(false);
 
-		console.log(profileData, 'profile data');
-
 		inModal
 			? (sent = recognition.sender !== profileData.id)
 			: (sent = recognition.sender === profileData.id);
